@@ -1,5 +1,6 @@
 import './App.css'
 import type {ProductType} from "./types/ProductType.ts";
+import Counter from "./components/Counter/Counter.tsx";
 
 function App() {
     const products:ProductType[] = [
@@ -9,6 +10,7 @@ function App() {
     const colors:string[] = ["white", "black", "green", "blue"];
     return(
         <>
+            <Counter />
         {products.map((product:ProductType, index:number)=>{
             return(<p key={index}>Title: {product.title} Price: {product.price}</p>)
             })}
