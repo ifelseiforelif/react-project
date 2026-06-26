@@ -1,23 +1,17 @@
-import {useRef, useEffect} from 'react'
 import './App.css'
-
-// import Button from "./ui/Button.tsx";
+import ProductsList from "./components/ProductsList.tsx";
+//import CreateProduct from "./components/CreateProduct.tsx";
+import productData from "./models/products.ts"
+import {useState} from "react";
 
 function App() {
-    const refDiv = useRef(null);
-    useEffect(()=>{
-        console.log(refDiv)
-    },[])
+    const [products, setProducts] = useState(productData)
     return(
         <>
-            <div ref={refDiv}>Block</div>
-            {/*<Button text="Click Me 1" />*/}
-            {/*<Button text="Click Me 2" handler={()=>{*/}
-            {/*    alert("Hello Rect")*/}
-            {/*}} />*/}
+            <ProductsList products={products} />
+            {/*<CreateProduct addProduct={setProducts} products={products} />*/}
         </>
     )
 
 }
-
 export default App
