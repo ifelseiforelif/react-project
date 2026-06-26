@@ -4,7 +4,7 @@ type ProductsProps = {
     products: ProductType[];
 }
 const ProductsList = ({products}:ProductsProps) => {
-    return (<div className="flex p-8">{products.map(product=>{
+    return (<div className="flex flex-wrap p-8">{products.map(product=>{
         return (<Product key={product.id} product={product}/>)
     })}</div>)
 }
