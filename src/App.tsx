@@ -1,12 +1,14 @@
-import ProductsList from "./components/ProductsList";
-import CreateProduct from "./components/CreateProduct";
+import Test from "./components/Test.tsx";
+import {useState} from "react";
 
 function App() {
+    const [isVisible, setIsVisible] = useState(true);
     return (
         <>
-            <ProductsList />
-            <CreateProduct />
+            <button onClick={() => setIsVisible(!isVisible)}>Click</button>
+            {isVisible && <Test />}
         </>
+
     );
 }
 
