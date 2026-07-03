@@ -1,13 +1,16 @@
-import Test from "./components/Test.tsx";
-import {useState} from "react";
+// import Timer from "./components/Timer.tsx";
+// import {useState} from "react";
+import CategoriesList from "./components/CategoriesList.tsx";
 
 function App() {
-    const [isVisible, setIsVisible] = useState(true);
+    //const [isVisible, setIsVisible] = useState(false);
     return (
-        <>
-            <button onClick={() => setIsVisible(!isVisible)}>Click</button>
-            {isVisible && <Test />}
-        </>
+        // <>
+        //     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        //             onClick={() => setIsVisible(!isVisible)}>{isVisible?"Stop":"Start"}</button>
+        //     {isVisible && <Timer />}
+        // </>
+        <CategoriesList />
 
     );
 }
