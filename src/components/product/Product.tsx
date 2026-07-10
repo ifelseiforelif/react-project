@@ -1,4 +1,4 @@
-import type {ProductType} from "../types/ProductType.ts";
+import type {ProductType} from "../../types/ProductType.ts";
 
 
 const Product = (prop:{product:ProductType})=>{

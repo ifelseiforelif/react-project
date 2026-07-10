@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useProducts } from "../hooks/useProducts";
+import { useProducts } from "../../hooks/useProducts.ts";
 import type {SubmitEvent} from "react";
-import type { ProductType } from "../types/ProductType";
+import type { ProductType } from "../../types/ProductType.ts";
 
 const CreateProduct = () => {
     const { products, setProducts } = useProducts();

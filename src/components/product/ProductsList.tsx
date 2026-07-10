@@ -1,5 +1,5 @@
-import Product from "./Product";
-import { useProducts } from "../hooks/useProducts";
+import Product from "./Product.tsx";
+import { useProducts } from "../../hooks/useProducts.ts";
 
 const ProductsList = () => {
     const { products } = useProducts();

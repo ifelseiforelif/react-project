@@ -1,6 +1,6 @@
 // import Timer from "./components/Timer.tsx";
 // import {useState} from "react";
-import CategoriesList from "./components/CategoriesList.tsx";
+import CategoriesList from "./components/categories/CategoriesList.tsx";
 
 function App() {
     //const [isVisible, setIsVisible] = useState(false);
