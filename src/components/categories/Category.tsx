@@ -1,12 +1,15 @@
 import type { CategoryType } from "@/types/CategoryType";
+import { Link } from "react-router";
 
 
 const Category = ({ category }: {category:CategoryType}) => {
     const imageUrl = 'http://localhost:5000/categories/'+category.url;
 
     return (
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition hover:shadow-xl">
-            <img
+        <Link to={`/categories/${category.id}`}>
+            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition hover:scale-105 hover:shadow-xl">
+
+           <img
                 src={imageUrl}
                 alt={category.name}
                 className="h-52 w-full object-cover"
@@ -36,6 +39,7 @@ const Category = ({ category }: {category:CategoryType}) => {
                 </div>
             </div>
         </div>
+</Link>
     );
 };
 
