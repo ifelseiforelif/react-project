@@ -1,21 +1,35 @@
 import { useEffect, useState } from "react";
 import {useNavigate, useParams} from "react-router";
 import type { CategoryType } from "@/types/CategoryType";
+import {Category} from "@/utils/Category.ts";
 
 const CategoryDetail = () => {
-    const { id } = useParams(); //витягуємо id з маршрута
+    const { slug } = useParams(); //витягуємо slug з маршрута
 
     const [category, setCategory] = useState<CategoryType | null>(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate(); //для кнопки Назад
     useEffect(() => {
-        fetch(`http://localhost:5000/api/v1/category/${id}`)
-            .then(res => res.json())
-            .then((data: CategoryType) => {
+        if (!slug)
+            return;
+
+        const loadCategory = async () => {
+            try {
+                const data = await Category.GetCategoryBySlug(slug);
+
                 setCategory(data);
-            })
-            .finally(() => setLoading(false));
-    }, [id]);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            finally {
+                setLoading(false);
+            }
+        };
+
+        loadCategory();
+
+    }, []);
 
     if (loading) {
         return (
@@ -33,8 +47,7 @@ const CategoryDetail = () => {
         );
     }
 
-    const imageUrl =
-        "http://localhost:5000/categories/" + category.url;
+    const imageUrl = import.meta.env.VITE_PATH_TO_SERVER+category.url;
 
     return (
         <div className="mx-auto max-w-6xl rounded-2xl bg-white p-8 shadow-lg">
