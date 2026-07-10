@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import type { CategoryType } from "@/types/CategoryType";
 import Category from "@/components/categories/Category";
 
+
 const CategoriesList = () => {
-    const URL = import.meta.env.VITE_PATH_TO_SERVER + "category";
+    const URL = import.meta.env.VITE_PATH_TO_SERVER +
+        import.meta.env.VITE_PATH_TO_API+ "category";
 
     const [categories, setCategories] = useState<CategoryType[]>([]);
 
@@ -27,6 +29,7 @@ const CategoriesList = () => {
         <div className="mx-auto max-w-7xl p-6">
             <h1 className="mb-6 text-3xl font-bold">
                 Categories
+
             </h1>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
