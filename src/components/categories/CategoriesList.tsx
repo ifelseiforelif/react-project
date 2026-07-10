@@ -3,8 +3,7 @@ import type { CategoryType } from "@/types/CategoryType";
 import Category from "@/components/categories/Category";
 
 const CategoriesList = () => {
-    const URL = import.meta.env.VITE_PATH_TO_SERVER + "category";
-
+    const URL = import.meta.env.VITE_PATH_TO_SERVER+import.meta.env.VITE_PATH_TO_API+'category'
     const [categories, setCategories] = useState<CategoryType[]>([]);
 
     useEffect(() => {

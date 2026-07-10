@@ -2,7 +2,8 @@ import type { CategoryType } from "@/types/CategoryType";
 
 
 const Category = ({ category }: {category:CategoryType}) => {
-    const imageUrl = 'http://localhost:5000/categories/'+category.url;
+    const imageUrl = import.meta.env.VITE_PATH_TO_SERVER+
+        import.meta.env.VITE_PATH_TO_IMAGE_CATEGORIES+'/'+category.url;
 
     return (
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition hover:shadow-xl">
