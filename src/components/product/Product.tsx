@@ -1,61 +1,71 @@
-import type {ProductType} from "../../types/ProductType.ts";
+import type { ProductType } from "@/types/ProductType";
 
+type Props = {
+    product: ProductType;
+};
 
-const Product = (prop:{product:ProductType})=>{
-    const{id, title, image,is_active,id_category,count, price} = prop.product;
+const Product = ({ product }: Props) => {
+
+    const image =
+        product.images.length > 0
+            ? `${import.meta.env.VITE_PATH_TO_SERVER}products/${product.images[0]}`
+            : "https://placehold.co/600x400";
+
     return (
-        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <img
-                src={image}
-                alt={title}
-                className="w-full h-40 object-contain bg-gray-100"
-            />
+        <div className="group overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
-            <div className="p-4 sm:p-5">
-                <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-start">
-                    <h2 className="text-lg sm:text-xl font-semibold text-gray-800 break-words">
-                        {title}
-                    </h2>
-
-                    <span
-                        className={`self-start px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap ${
-                            is_active
-                                ? "bg-green-100 text-green-700"
-                                : "bg-red-100 text-red-700"
-                        }`}
-                    >
-        {is_active ? "Активний" : "Неактивний"}
-      </span>
-                </div>
-
-                <div className="mt-4 space-y-2 text-sm text-gray-600">
-                    <div className="flex justify-between">
-                        <span>ID:</span>
-                        <span className="font-medium">{id}</span>
-                    </div>
-
-                    <div className="flex justify-between">
-                        <span>Категорія:</span>
-                        <span className="font-medium">{id_category}</span>
-                    </div>
-
-                    <div className="flex justify-between">
-                        <span>Кількість:</span>
-                        <span className="font-medium">{count} шт.</span>
-                    </div>
-                </div>
-
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <span className="text-2xl sm:text-3xl font-bold text-blue-600">
-        {price} ₴
-      </span>
-
-                    <button className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:scale-95 transition">
-                        Купити
-                    </button>
-                </div>
+            <div className="overflow-hidden bg-gray-100">
+                <img
+                    src={image}
+                    alt={product.name}
+                    className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
             </div>
+
+            <div className="flex h-[250px] flex-col p-5">
+
+                <h2 className="line-clamp-2 text-lg font-semibold text-gray-900">
+                    {product.name}
+                </h2>
+
+                <p className="mt-3 line-clamp-3 text-sm text-gray-500">
+                    {product.description}
+                </p>
+
+                <div className="mt-auto">
+
+                    <div className="mb-4 flex items-center justify-between">
+
+                        <span className="text-3xl font-bold text-indigo-600">
+                            {product.price.toLocaleString()} ₴
+                        </span>
+
+                        <span
+                            className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                                product.stockQty > 0
+                                    ? "bg-green-100 text-green-700"
+                                    : "bg-red-100 text-red-700"
+                            }`}
+                        >
+                            {product.stockQty > 0
+                                ? `${product.stockQty} шт`
+                                : "Немає"}
+                        </span>
+
+                    </div>
+
+                    <button
+                        className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 active:scale-95"
+                    >
+                        Детальніше
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
-    )
-}
-export default Product
+    );
+};
+
+export default Product;

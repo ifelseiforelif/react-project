@@ -7,7 +7,7 @@ import About from "@/components/pages/About.tsx";
 import CategoriesList from "@/components/categories/CategoriesList.tsx";
 import CategoryDetail from "@/components/categories/CategoryDetail.tsx";
 import NotFoundPage from "@/components/pages/NotFound.tsx";
-import ProductsList from "@/components/product/ProductsList.tsx";
+import ProductsList from "@/components/test/product/ProductsList.tsx";
 
 export const routes = createBrowserRouter([
     {
@@ -17,6 +17,10 @@ export const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: "subcategories/:id",
+                element: <CategoriesList />,
             },
             {
                 path: "categories",

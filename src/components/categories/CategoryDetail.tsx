@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import {useNavigate, useParams} from "react-router";
+import {useParams} from "react-router";
 import type { CategoryType } from "@/types/CategoryType";
-import {Category} from "@/utils/Category.ts";
+import Category from "@/utils/Category.ts";
 
 const CategoryDetail = () => {
     const { slug } = useParams(); //витягуємо slug з маршрута
 
     const [category, setCategory] = useState<CategoryType | null>(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate(); //для кнопки Назад
     useEffect(() => {
         if (!slug)
             return;
@@ -51,12 +50,6 @@ const CategoryDetail = () => {
 
     return (
         <div className="mx-auto max-w-6xl rounded-2xl bg-white p-8 shadow-lg">
-            <button
-                onClick={() => navigate(-1)}
-                className="mb-6 flex items-center gap-2 rounded-lg bg-gray-200 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-300"
-            >
-                ← Назад
-            </button>
             <div className="grid gap-10 md:grid-cols-2">
 
                 <img

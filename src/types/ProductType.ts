@@ -1,9 +1,10 @@
 export type ProductType = {
     id: number|string,
-    title:string,
+    name:string,
     price:number,
-    is_active?: boolean,
-    image?:string,
-    count?: number,
-    id_category?:number|string
+    description:string,
+    is_active: boolean,
+    stockQty: number,
+    category_id?:number|string,
+    images:string[]
 }

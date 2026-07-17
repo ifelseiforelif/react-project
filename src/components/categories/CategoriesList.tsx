@@ -1,65 +1,85 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+
 import type { CategoryType } from "@/types/CategoryType";
 import Category from "@/components/categories/Category";
 import Categories from "@/utils/Category";
-
+import Products from "@/utils/Product";
+import type {ProductType} from "@/types/ProductType.ts";
+import Product from "@/components/product/Product";
 
 const CategoriesList = () => {
-    const [categories, setCategories] = useState<CategoryType[]|null>([]);
+    const [categories, setCategories] = useState<CategoryType[]>([]);
+    const [products, setProducts] = useState<ProductType[]>([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
 
+    const { id } = useParams();
+
+    useEffect(() => {
         const loadCategories = async () => {
+            setLoading(true);
+
             try {
-                const data = await Categories.GetAllCategories() ;
-                if(data!==null)
-                    setCategories(data);
-            }
-            catch (error) {
-                console.error(error);
-            }
-            finally {
+                const data = await Categories.GetAllCategories();
+
+                if (data) {
+                    setProducts([]);
+                    setCategories(
+                        data.filter(category => category.parentId === null)
+                    );
+                }
+            } finally {
                 setLoading(false);
             }
         };
+        const loadSubCategories = async (categoryId: number) => {
+            setLoading(true);
 
-        loadCategories();
+            try {
+                const data = await Categories.GetSubCategoryById(categoryId);
 
-    }, []);
+                if (data && data.length > 0) {
+                    setProducts([]);
+                    setCategories(data);
+                } else {
+                    const products = await Products.GetProductsByCategoryId(categoryId);
+
+                    setCategories([]);
+                    setProducts(products ?? []);
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+        if (id) {
+            loadSubCategories(Number(id));
+        } else {
+            loadCategories();
+        }
+
+    }, [id]);
 
     if (loading) {
-        return (
-            <div className="text-center text-2xl">
-                Loading...
-            </div>
-        );
-    }
-
-    if (categories?.length === 0) {
-        return (
-            <p className="text-center text-gray-500 text-lg mt-10">
-                List is empty
-            </p>
-        );
+        return <div>Loading...</div>;
     }
 
     return (
-        <div className="mx-auto max-w-7xl p-6">
-            <h1 className="mb-6 text-3xl font-bold">
-                Categories
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-            </h1>
+            {categories.map(category => (
+                <Category
+                    key={category.id}
+                    category={category}
+                />
+            ))}
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {categories?.map((category:CategoryType) => {
-                    if(category.parentId === null)
-                        return ( <Category
-                            key={category.id}
-                            category={category}
-                        />)
-                }
-                )}
-            </div>
+            {products.map(product => (
+                <Product
+                    key={product.id}
+                    product={product}
+                />
+            ))}
+
         </div>
     );
 };

@@ -23,5 +23,15 @@ class Category {
         }
         return await response.json();
     }
+
+    public static async GetSubCategoryById(id: number):Promise<CategoryType[]|null> {
+        const response = await fetch(
+            Category.path + 'sub/' + id
+        );
+        if (!response.ok) {
+            return null;
+        }
+        return await response.json();
+    }
 }
 export default Category;
