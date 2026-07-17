@@ -8,6 +8,7 @@ import CategoriesList from "@/components/categories/CategoriesList.tsx";
 import CategoryDetail from "@/components/categories/CategoryDetail.tsx";
 import NotFoundPage from "@/components/pages/NotFound.tsx";
 import ProductsList from "@/components/test/product/ProductsList.tsx";
+import Search from "@/components/pages/Search.tsx";
 
 export const routes = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ export const routes = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "subcategories/:id",
+                path: "subcategories/:id", //params
                 element: <CategoriesList />,
             },
             {
@@ -39,6 +40,10 @@ export const routes = createBrowserRouter([
                 element: <CategoryDetail />,
             },
             {
+                path:"search",
+                element:<Search />
+            },
+            {
                 path: "*",
                 element: <NotFoundPage />,
             },
@@ -47,19 +52,23 @@ export const routes = createBrowserRouter([
 ]);
 //
 // import {createBrowserRouter} from "react-router";
-// import CategoriesList from "@/components/categories/CategoriesList.tsx";
+// import Layout from "@/components/Layout.tsx";
 //
 // export const routes = createBrowserRouter([
 //     {
-//         path:'/',
-//         element: <CategoriesList/>
-//     },
-//     {
-//         path:'about',
-//         element:<>About Page</>
-//     },
-//     {
-//         path:'contacts',
-//         element:<>Contacts</>
+//         path: "/",
+//         element:<Layout />,
+//         children:[
+//             {
+//                 index:true,
+//                 element:<div>Home page</div>
+//             },
+//             {
+//                 path:'about',
+//                 element:<div>About page</div>
+//             },
+//         ]
 //     }
+//
+//
 // ])

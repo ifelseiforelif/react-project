@@ -1,6 +1,7 @@
 // import Timer from "./components/Timer.tsx";
 // import {useState} from "react";
-import CategoriesList from "./components/categories/CategoriesList.tsx";
+//import CategoriesList from "./components/categories/CategoriesList.tsx";
+import Layout from "@/components/Layout.tsx";
 
 function App() {
     //const [isVisible, setIsVisible] = useState(false);
@@ -10,7 +11,8 @@ function App() {
         //             onClick={() => setIsVisible(!isVisible)}>{isVisible?"Stop":"Start"}</button>
         //     {isVisible && <Timer />}
         // </>
-        <CategoriesList />
+        // <CategoriesList />
+        <Layout/>
 
     );
 }

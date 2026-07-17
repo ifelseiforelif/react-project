@@ -8,6 +8,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ProductsProvider>
         <RouterProvider router={routes}>
         </RouterProvider>
-    </ProductsProvider>
+     </ProductsProvider>
 
 );
