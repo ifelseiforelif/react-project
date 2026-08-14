@@ -28,7 +28,8 @@ const CategoriesList = () => {
                         data.filter(category => category.parentId === null)
                     );
                 }
-            } finally {
+            }
+            finally {
                 setLoading(false);
             }
         };
@@ -43,7 +44,6 @@ const CategoriesList = () => {
                     setCategories(data);
                 } else {
                     const products = await Products.GetProductsByCategoryId(categoryId);
-
                     setCategories([]);
                     setProducts(products ?? []);
                 }

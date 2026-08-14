@@ -1,13 +1,15 @@
 import { NavLink } from "react-router";
+import AppRoutes from "@/enums/AppRoutes.ts";
+import Search from "@/components/layout/Search.tsx";
 
 const Header = () => {
 
     const menu = [
-        { title: "Home", path: "/" },
-        { title: "Categories", path: "/categories" },
-        { title: "Products", path: "/products" },
-        { title: "About", path: "/about" },
-        { title: "Contacts", path: "/contacts" }
+        { title: "Home", path: AppRoutes.HOME},
+        { title: "Categories", path: AppRoutes.CATEGORIES },
+        { title: "Products", path: AppRoutes.PRODUCTS },
+        { title: "About", path: AppRoutes.ABOUT },
+        { title: "Contacts", path: "contacts" }
     ];
 
     return (
@@ -16,7 +18,7 @@ const Header = () => {
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
                 <NavLink
-                    to="/"
+                    to={menu[0].path}
                     className="text-2xl font-bold tracking-wide"
                 >
                     MyShop
@@ -43,27 +45,19 @@ const Header = () => {
                     ))}
 
                 </nav>
-
-                <div className="flex items-center gap-5 text-xl">
-
-                    <button>🔍</button>
+                <div className="flex items-center gap-4">
+                    <Search />
 
                     <button>❤️</button>
 
                     <button className="relative">
-
                         🛒
-
-                        <span
-                            className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs"
-                        >
-                            3
-                        </span>
-
+                        <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs">
+      3
+    </span>
                     </button>
 
                     <button>👤</button>
-
                 </div>
 
             </div>
