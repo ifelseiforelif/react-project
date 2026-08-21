@@ -8,6 +8,7 @@ import NotFoundPage from "@/components/pages/NotFound.tsx";
 import ProductsList from "@/components/test/product/ProductsList.tsx";
 import Error from "@/components/pages/Error.tsx";
 import AppRoutes from "@/enums/AppRoutes.ts";
+import Register from "@/components/pages/Register.tsx";
 
 export const routes = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: AppRoutes.ABOUT,
-                Component:About,
+                Component: About
             },
             {
                 path:AppRoutes.PRODUCTS,
@@ -42,6 +43,10 @@ export const routes = createBrowserRouter([
             {
                 path:AppRoutes.SEARCH,
                 Component:CategoriesList
+            },
+            {
+                path:AppRoutes.REGISTER,
+                Component:Register
             },
             {
                 path: "*",

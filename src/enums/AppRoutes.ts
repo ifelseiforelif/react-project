@@ -5,6 +5,7 @@ const AppRoutes = {
     ABOUT: "/about",
     PRODUCTS: "/products",
     SEARCH: "/search",
+    REGISTER: "/register",
 } as const;
 
 export default AppRoutes;
