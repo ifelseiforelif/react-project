@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Layout from "@/components/layout/Layout.tsx";
 import Home from "@/components/pages/Home.tsx";
-import About from "@/components/pages/About.tsx";
+//import About from "@/components/pages/About.tsx";
 import CategoriesList from "@/components/categories/CategoriesList.tsx";
 import CategoryDetail from "@/components/categories/CategoryDetail.tsx";
 import NotFoundPage from "@/components/pages/NotFound.tsx";
@@ -30,7 +30,13 @@ export const routes = createBrowserRouter([
             },
             {
                 path: AppRoutes.ABOUT,
-                Component: About
+                //Component: About
+                lazy:async () => {
+                        const module = await import('@/components/pages/About.tsx');
+        return {
+            Component: module.default,
+        };
+},
             },
             {
                 path:AppRoutes.PRODUCTS,
